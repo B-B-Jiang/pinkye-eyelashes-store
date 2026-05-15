@@ -1,12 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 关闭所有构建检查（本地正常，线上屏蔽报错）
+  // 强制开启静态导出，生成纯静态文件，Vercel直接托管
+  output: "export",
+  // 忽略所有构建警告/错误，避免本地正常线上失败
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
-  // 关闭静态导出，使用Vercel默认渲染（解决404核心）
-  output: undefined,
-  // 兼容图片资源，避免线上报错
+  // 兼容静态导出的图片处理，避免线上报错
   images: { unoptimized: true },
+  // 解决静态导出的路由404问题
+  trailingSlash: true,
 };
 
 export default nextConfig;
