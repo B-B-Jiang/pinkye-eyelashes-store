@@ -44,6 +44,14 @@ const productData = {
   },
 }
 
+// ✅ 修复核心：添加 Next.js 强制要求的静态参数生成函数
+export async function generateStaticParams() {
+  // 返回你项目中所有产品的 slug，目前只有这一个
+  return [
+    { slug: "xiao-gou-zong-zong" },
+  ];
+}
+
 export default function ProductPage({
   params,
 }: {
@@ -353,7 +361,6 @@ export default function ProductPage({
                   src="/pinkye-wearing-effect-2.jpg"
                   alt="Wearing effect"
                   fill
-                  className="object-cover"
                 />
               </div>
             </Reveal>
